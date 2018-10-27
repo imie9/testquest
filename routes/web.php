@@ -16,6 +16,8 @@ Route::get('/welcome', function () {
 });
 
 Route::get('/category/full-list', 'CategoryApiController@categoryList');
+Route::get('/category/full-list-not-tree', 'CategoryApiController@categoryListNoTree');
 Route::post('/category/items-list', 'CategoryApiController@itemsList');
+Route::post('/category/create', 'CategoryApiController@create');
 
 Route::get('{path}', 'MainController@index')->where('path', '([A-z\d-\/_.]+)?');

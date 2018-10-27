@@ -13,6 +13,9 @@ window.Vue = require('vue');
  */
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import Toast from 'vue2-toast';
+import 'vue2-toast/lib/toast.css';
+
 
 /**
  * components
@@ -27,6 +30,12 @@ import MainComponent from './components/MainComponent';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(Toast, {
+    type: 'center',
+    duration: 2000,
+    wordWrap: true,
+    width: '150px'
+});
 
 var router = new VueRouter({
    routes: [
@@ -40,6 +49,7 @@ var router = new VueRouter({
 
 Vue.component('main-component', require('./components/MainComponent.vue'));
 Vue.component('categories-component', require('./components/CategoriesComponent.vue'));
+Vue.component('create-category-component', require('./components/CreateCategoryComponent.vue'));
 Vue.component('items-component', require('./components/ItemsComponent.vue'));
 Vue.component('tree-menu-component', require('./components/TreeMenuComponent.vue'));
 

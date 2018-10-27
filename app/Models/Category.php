@@ -80,6 +80,17 @@ class Category extends Node {
    }
 
     /**
+     * Returns list of categories
+     *
+     * @return mixed
+     */
+    public function getNoTreeList()
+    {
+        $tree = self::all()->toArray();
+        return $tree;
+    }
+
+    /**
      * Returns items list for Category by $id
      *
      * @param $id integer
@@ -97,9 +108,33 @@ class Category extends Node {
        return $items;
    }
 
-   public function create()
+    /**
+     * Creates a new category
+     *
+     * @param $data
+     * @return mixed
+     */
+   public function createNew($data)
    {
+       $category = new self();
 
+       try {
+           $category->attributes['name'] = $data['name'];
+
+           $category->save();
+
+           if (!empty($data['parent_id'])) {
+               $parent = Category::find(['id' => $data['parent_id']])->first();
+               $category->makeChildOf($parent);
+           }
+
+           return $category->toArray();
+       } catch (\Exception $e) {
+           return [
+               'success' => false,
+               'msg' => $e->getMessage()
+           ];
+       }
    }
 
     /**

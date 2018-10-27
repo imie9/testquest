@@ -67,4 +67,8 @@
     .item {
         margin-bottom: 20px;
     }
+    .items {
+        border-right: 1px solid silver;
+        padding: 5px;
+    }
 </style>

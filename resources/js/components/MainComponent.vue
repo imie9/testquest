@@ -14,7 +14,10 @@
                 <items-component></items-component>
             </div>
             <div class="column">
-                Fourth column
+                <div class="subtitle is-3 categories-title" style="margin-bottom: 5px">
+                    Create category
+                </div>
+                <create-category-component></create-category-component>
             </div>
         </div>
     </div>

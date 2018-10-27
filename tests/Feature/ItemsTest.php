@@ -13,7 +13,12 @@ class ItemsTest extends TestCase
     public function loadItemsForCategory()
     {
         $category_id = rand(1, 12);
-        $this->post('/category/items-list', ['id' => $category_id])
+
+        $request = [
+            'id' => $category_id
+        ];
+
+        $this->post('/category/items-list', $request)
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [

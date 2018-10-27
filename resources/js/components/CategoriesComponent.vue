@@ -21,6 +21,9 @@
         },
         mounted() {
             this.update()
+            bus.$on('category-created', event => {
+                this.update();
+            })
         },
         methods: {
             update: function () {

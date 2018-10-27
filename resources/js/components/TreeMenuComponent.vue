@@ -11,7 +11,7 @@
     import { bus } from '../bus';
     export default {
         props: {
-            node: Object,
+            node: null,
             parent: Object
         },
         data: function() {
