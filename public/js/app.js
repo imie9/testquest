@@ -25276,6 +25276,10 @@ module.exports = Vue;
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(69)
+}
 var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(47)
@@ -25284,7 +25288,7 @@ var __vue_template__ = __webpack_require__(48)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -51945,8 +51949,8 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "subtitle is-3",
-              staticStyle: { "margin-left": "15px" }
+              staticClass: "subtitle is-3 categories-title",
+              staticStyle: { "margin-bottom": "5px" }
             },
             [_vm._v("\n                Categories\n            ")]
           ),
@@ -52076,7 +52080,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.container {\n    padding-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.categories {\n    border-left: 1px solid silver;\n    border-right: 1px solid silver;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -52132,8 +52136,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52169,49 +52171,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    !_vm.categories_loading
-      ? _c(
-          "div",
-          { staticClass: "categories" },
-          _vm._l(_vm.categories, function(category) {
-            return _c(
-              "div",
-              { staticClass: "category" },
-              [
-                _c(
-                  "a",
-                  {
-                    on: {
-                      click: function($event) {
-                        _vm.choose(category)
-                      }
+  return !_vm.categories_loading
+    ? _c(
+        "div",
+        { staticClass: "categories" },
+        _vm._l(_vm.categories, function(category) {
+          return _c(
+            "div",
+            { staticClass: "category" },
+            [
+              _c(
+                "a",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.choose(category)
                     }
-                  },
-                  [_vm._v(_vm._s(category.name))]
-                ),
-                _vm._v(" "),
-                _vm._l(category.children, function(child) {
-                  return category.children.length !== 0
-                    ? _c(
-                        "div",
-                        { staticClass: "sub" },
-                        [
-                          _c("tree-menu-component", {
-                            attrs: { parent: child, node: child.children }
-                          })
-                        ],
-                        1
-                      )
-                    : _vm._e()
-                })
-              ],
-              2
-            )
-          })
-        )
-      : _vm._e()
-  ])
+                  }
+                },
+                [_vm._v(_vm._s(category.name))]
+              ),
+              _vm._v(" "),
+              _vm._l(category.children, function(child) {
+                return category.children.length !== 0
+                  ? _c(
+                      "div",
+                      { staticClass: "sub" },
+                      [
+                        _c("tree-menu-component", {
+                          attrs: { parent: child, node: child.children }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        })
+      )
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -52309,7 +52309,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.card {\n    max-width: 30%;\n}\n.item {\n    margin-bottom: 20px;\n}\n", ""]);
+exports.push([module.i, "\n.item {\n    margin-bottom: 20px;\n}\n", ""]);
 
 // exports
 
@@ -52398,7 +52398,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "items" },
     [
       _vm.load_items
         ? _c("div", { staticClass: "loading" }, [_vm._v("\n        ...\n    ")])
@@ -52595,7 +52595,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "category" },
     [
       _c(
         "a",
@@ -52643,6 +52643,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(70);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("5dbc01ba", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ee370e9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ee370e9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.container {\n    margin-left: 5%;\n    margin-right: 5%;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

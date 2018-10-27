@@ -16,7 +16,8 @@ class CategoryApiController extends Controller
      *
      * @return array
      */
-    public function categoryList() {
+    public function categoryList()
+    {
         $category = new Category();
 
         $list = $category->getList();
@@ -37,7 +38,8 @@ class CategoryApiController extends Controller
      * }
      * @return mixed
      */
-    public function itemsList(Request $request) {
+    public function itemsList(Request $request)
+    {
         $category_id = $request->post()['id'];
 
         if (empty($category_id)) {
@@ -68,7 +70,8 @@ class CategoryApiController extends Controller
      *
      * @return mixed
      */
-    private function formatResponse($success, $data, $message = null) {
+    private function formatResponse($success, $data, $message = null)
+    {
         $result = [
             'success' => $success,
             'data' => $data

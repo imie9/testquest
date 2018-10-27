@@ -73,7 +73,8 @@ class Category extends Node {
      *
      * @return mixed
      */
-   public function getList() {
+   public function getList()
+   {
        $tree = self::all()->toHierarchy()->toArray();
        return $tree;
    }
@@ -84,7 +85,8 @@ class Category extends Node {
      * @param $id integer
      * @return null
      */
-   public static function getOwnItems($id) {
+   public static function getOwnItems($id)
+   {
        $category = self::find(['id' => $id])->first();
 
        if (!is_object($category)) {
@@ -95,12 +97,18 @@ class Category extends Node {
        return $items;
    }
 
+   public function create()
+   {
+
+   }
+
     /**
      * Eloquent Category->Items
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function items() {
+    public function items()
+    {
         return $this->hasMany('App\Models\Item');
     }
 

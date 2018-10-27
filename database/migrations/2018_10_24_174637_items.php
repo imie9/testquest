@@ -13,7 +13,8 @@ class Items extends Migration
      */
     public function up()
     {
-        Schema::create('items', function(Blueprint $table) {
+        Schema::create('items', function(Blueprint $table)
+        {
             $table->increments('id');
             $table->integer('category_id')->nullable()->index();
             $table->foreign('category_id')->references('id')->on('categories');

@@ -28,6 +28,7 @@
             background-color: #dfd8d9;
             font-weight: bold;
             font-size: 20px;
+            padding-left: 10px;
         }
     </style>
 </head>

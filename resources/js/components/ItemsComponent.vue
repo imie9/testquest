@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="items">
         <div class="loading" v-if=load_items>
             ...
         </div>
@@ -64,9 +64,6 @@
 </script>
 
 <style>
-    .card {
-        max-width: 30%;
-    }
     .item {
         margin-bottom: 20px;
     }

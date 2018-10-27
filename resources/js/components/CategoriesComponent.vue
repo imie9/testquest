@@ -1,13 +1,11 @@
 <template>
-    <div class="container">
-        <div class="categories" v-if="!categories_loading">
-            <div class="category" v-for="category in categories">
-                <a @click="choose(category)">{{ category.name }}</a>
-                <div class="sub" v-for="child in category.children" v-if="category.children.length !== 0">
-                    <tree-menu-component :parent="child" :node="child.children"></tree-menu-component>
-                </div>
-            </div>
-        </div>
+    <div class="categories" v-if="!categories_loading">
+         <div class="category" v-for="category in categories">
+             <a @click="choose(category)">{{ category.name }}</a>
+             <div class="sub" v-for="child in category.children" v-if="category.children.length !== 0">
+                 <tree-menu-component :parent="child" :node="child.children"></tree-menu-component>
+             </div>
+         </div>
     </div>
 </template>
 
@@ -39,7 +37,9 @@
 </script>
 
 <style>
-    .container {
-        padding-left: 10px;
+    .categories {
+        border-left: 1px solid silver;
+        border-right: 1px solid silver;
+        padding: 5px;
     }
 </style>

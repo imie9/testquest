@@ -2,7 +2,7 @@
     <div class="container">
         <div class="columns">
             <div class="column is-one-third">
-                <div class="subtitle is-3" style="margin-left: 15px">
+                <div class="subtitle is-3 categories-title" style="margin-bottom: 5px">
                     Categories
                 </div>
                 <categories-component></categories-component>
@@ -35,3 +35,10 @@
         }
     }
 </script>
+
+<style>
+    .container {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+</style>

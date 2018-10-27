@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="category">
         <a @click="choose(parent)">{{parent.name}}</a>
         <div class="category" v-for="category in node">
             <a @click="choose(category)">{{ category.name }}</a>
