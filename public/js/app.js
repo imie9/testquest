@@ -935,6 +935,11 @@ window.Vue = __webpack_require__(15);
  */
 var bus = new Vue();
 
+//Global events list
+
+// event: 'choose-category', emit from 'TreeMenuComponent' and 'CategoriesComponent', subscribe in 'ItemsComponent'
+// event: 'category-created', emit from 'CreateCategoryComponent', subscribe in 'CategoriesComponent'
+
 /***/ }),
 /* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -52638,6 +52643,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52685,19 +52691,32 @@ var render = function() {
       ),
       _vm._v(" "),
       _vm._l(_vm.node, function(category) {
-        return _c("div", { staticClass: "category" }, [
-          _c(
-            "a",
-            {
-              on: {
-                click: function($event) {
-                  _vm.choose(category)
-                }
-              }
-            },
-            [_vm._v(_vm._s(category.name))]
-          )
-        ])
+        return _c(
+          "div",
+          { staticClass: "category" },
+          [
+            category.children.length === 0
+              ? _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.choose(category)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(category.name))]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            category.children.length !== 0
+              ? _c("tree-menu-component", {
+                  attrs: { parent: category, node: category.children }
+                })
+              : _vm._e()
+          ],
+          1
+        )
       })
     ],
     2
