@@ -120,7 +120,12 @@ class Category extends Node {
 
        try {
            $category->attributes['name'] = $data['name'];
+           //i know this is scary, but bug in library leave me no choice
+           $id = Category::max('id');
+           $id++;
+           //
 
+           $category->attributes['id'] = $id;
            $category->save();
 
            if (!empty($data['parent_id'])) {

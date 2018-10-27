@@ -55,9 +55,12 @@
                 }).then(function (response) {
                     if (response.data.success) {
                         bus.$emit('category-created', {});
-                        this.$toast('Created')
+                        this.$toast('Created');
                         this.request.name = null;
                         this.request.parent_id = null;
+                        this.update();
+                    } else {
+                        this.$toast('Failed, sorry...');
                     }
                 })
             }

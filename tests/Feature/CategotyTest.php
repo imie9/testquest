@@ -51,7 +51,7 @@ class CategotyTest extends TestCase
                 'data' => [
                     '*' => [
                         'id', 'name', 'parent_id', 'children', 'lft', 'rgt',
-                        'depth'
+                        'depth', 'success' => true
                     ]
                 ]
             ]);
@@ -71,7 +71,7 @@ class CategotyTest extends TestCase
                 'data' => [
                     '*' => [
                         'id', 'name', 'parent_id', 'children', 'lft', 'rgt',
-                        'depth'
+                        'depth', 'success' => true
                     ]
                 ]
             ]);
