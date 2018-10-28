@@ -56,6 +56,9 @@
                     emulateHTTP: true
                 }).then(function (response) {
                     this.items = response.data.data;
+                    if (this.items.length === 0) {
+                        this.$toast('There is no items for this category.')
+                    }
                     this.load_items = false;
                 })
             }

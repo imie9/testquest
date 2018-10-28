@@ -11,7 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         $this->call(CategoriesTableSeeder::class);
+        print("running CategoriesTableSeeder 4 times to make tree\n");
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
          $this->call(ItemsTableSeeder::class);
     }
 }
