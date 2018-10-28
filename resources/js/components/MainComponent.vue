@@ -7,7 +7,7 @@
                 </div>
                 <categories-component></categories-component>
             </div>
-            <div class="column">
+            <div class="column is-three-fifths">
                 <div class="subtitle is-3" style="margin-left: 15px">
                     Items
                 </div>

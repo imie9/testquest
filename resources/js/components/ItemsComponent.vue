@@ -68,7 +68,12 @@
 
 <style>
     .item {
-        margin-bottom: 20px;
+        margin: 5px;
+        width: 48%;
+        float: left;
+    }
+    .card {
+        min-height: 500px;
     }
     .items {
         border-right: 1px solid silver;

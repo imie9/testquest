@@ -52791,7 +52791,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "column" },
+        { staticClass: "column is-three-fifths" },
         [
           _c(
             "div",
@@ -53406,7 +53406,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.item {\n    margin-bottom: 20px;\n}\n.items {\n    border-right: 1px solid silver;\n    padding: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.item {\n    margin: 5px;\n    width: 48%;\n    float: left;\n}\n.card {\n    min-height: 500px;\n}\n.items {\n    border-right: 1px solid silver;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
