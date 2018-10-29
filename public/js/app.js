@@ -52943,9 +52943,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -52971,9 +52968,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.categories_loading = false;
                 this.categories = response.data.data;
             });
-        },
-        choose: function choose(data) {
-            __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* bus */].$emit('choose-category', data);
         }
     }
 });
@@ -52995,34 +52989,11 @@ var render = function() {
             "div",
             { staticClass: "category" },
             [
-              _c(
-                "a",
-                {
-                  on: {
-                    click: function($event) {
-                      _vm.choose(category)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(category.name))]
-              ),
-              _vm._v(" "),
-              _vm._l(category.children, function(child) {
-                return category.children.length !== 0
-                  ? _c(
-                      "div",
-                      { staticClass: "sub" },
-                      [
-                        _c("tree-menu-component", {
-                          attrs: { parent: child, node: child.children }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
+              _c("tree-menu-component", {
+                attrs: { parent: category, node: category.children }
               })
             ],
-            2
+            1
           )
         })
       )
