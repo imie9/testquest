@@ -52923,7 +52923,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.categories {\n    border-left: 1px solid silver;\n    border-right: 1px solid silver;\n    padding: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.categories {\n    padding-left: 15px;\n}\n", ""]);
 
 // exports
 
@@ -53377,7 +53377,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.item {\n    margin: 5px;\n    width: 48%;\n    float: left;\n}\n.card {\n    min-height: 500px;\n}\n.items {\n    border-right: 1px solid silver;\n    padding: 5px;\n}\n", ""]);
+exports.push([module.i, "\n.item {\n    margin: 5px;\n    width: 48%;\n    float: left;\n}\n.card {\n    min-height: 500px;\n}\n.items {\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -53613,7 +53613,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.category[data-v-1e4aec85] {\n    padding-left: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.category-child[data-v-1e4aec85] {\n    padding-left: 10px;\n}\n", ""]);
 
 // exports
 
@@ -53684,7 +53684,7 @@ var render = function() {
       _vm._l(_vm.node, function(category) {
         return _c(
           "div",
-          { staticClass: "category" },
+          { staticClass: "category-child" },
           [
             category.children.length === 0
               ? _c(

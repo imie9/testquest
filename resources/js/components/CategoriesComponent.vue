@@ -35,8 +35,6 @@
 
 <style>
     .categories {
-        border-left: 1px solid silver;
-        border-right: 1px solid silver;
-        padding: 5px;
+        padding-left: 15px;
     }
 </style>

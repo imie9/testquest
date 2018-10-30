@@ -76,7 +76,6 @@
         min-height: 500px;
     }
     .items {
-        border-right: 1px solid silver;
         padding: 5px;
     }
 </style>
