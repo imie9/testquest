@@ -50,7 +50,6 @@ var router = new VueRouter({
 
 Vue.prototype.$bus = new Vue();
 
-
 Vue.component('main-component', require('./components/MainComponent.vue'));
 Vue.component('categories-component', require('./components/CategoriesComponent.vue'));
 Vue.component('create-category-component', require('./components/CreateCategoryComponent.vue'));

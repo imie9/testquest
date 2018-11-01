@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="field">
-            <label class="label">Subject</label>
+            <label class="label">Category</label>
             <div class="control">
                 <div class="select">
                     <select v-model="item.category_id">
@@ -72,7 +72,6 @@
             },
             onFileLoad(event) {
                 this.item.image = event.target.files[0];
-                console.log(this.item);
             },
             createItem(event) {
                 event.preventDefault();
