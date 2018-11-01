@@ -9,7 +9,6 @@
 </template>
 
 <script>
-    import { bus } from '../bus';
     export default {
         props: {
             node: null,
@@ -25,7 +24,7 @@
         },
         methods: {
             choose(data) {
-                bus.$emit('choose-category', data);
+                this.$bus.$emit('choose-category', data);
             }
         }
     }

@@ -14,10 +14,17 @@
                 <items-component></items-component>
             </div>
             <div class="column">
-                <div class="subtitle is-3 categories-title" style="margin-bottom: 5px">
-                    Create category
+                <!--<div class="subtitle is-3 categories-title" style="margin-bottom: 5px">-->
+                    <!--Create category-->
+                <!--</div>-->
+                <div class="tabs">
+                    <ul>
+                        <li :class="{'is-active': is_category_active}" @click="setActiveTab(1)"><a>Category</a></li>
+                        <li :class="{'is-active': is_item_active}" @click="setActiveTab(2)"><a>Item</a></li>
+                    </ul>
                 </div>
-                <create-category-component></create-category-component>
+                <create-category-component v-if="is_category_active"></create-category-component>
+                <create-item-component v-if="is_item_active"></create-item-component>
             </div>
         </div>
     </div>
@@ -27,14 +34,23 @@
     export default {
         data: function () {
             return {
-
+                is_category_active: true,
+                is_item_active: false,
             }
         },
         mounted() {
 
         },
         methods: {
-
+            setActiveTab(state) {
+                if (state === 1) {
+                    this.is_category_active = true;
+                    this.is_item_active = false;
+                } else {
+                    this.is_item_active = true;
+                    this.is_category_active = false;
+                }
+            }
         }
     }
 </script>

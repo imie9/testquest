@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    import { bus } from '../bus';
     export default {
         name: 'create-category-component',
         data: function () {
@@ -32,7 +31,7 @@
                     name: null,
                     parent_id: null,
                 },
-                list_endpoint: '/category/full-list-not-tree',
+                list_endpoint: '/category/list',
                 creation_endpoint: '/category/create',
                 categories: [],
                 categories_loading: true
@@ -53,8 +52,8 @@
                     emulateJSON: true,
                     emulateHTTP: true
                 }).then(function (response) {
-                    if (response.data.success) {
-                        bus.$emit('category-created', {});
+                    if (response.data) {
+                        this.$bus.$emit('category-created', {});
                         this.$toast('Created');
                         this.request.name = null;
                         this.request.parent_id = null;

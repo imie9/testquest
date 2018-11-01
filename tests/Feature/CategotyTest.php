@@ -11,13 +11,12 @@ class CategotyTest extends TestCase
     /** @test */
     public function loadListOfCategories()
     {
-        $this->getJson('/category/full-list')
+        $this->getJson('/category/tree')
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
-                        'id', 'name', 'parent_id', 'children', 'lft', 'rgt',
-                        'depth'
+                        'id', 'name', 'children'
                     ]
                 ]
             ]);
@@ -26,13 +25,12 @@ class CategotyTest extends TestCase
     /** @test */
     public function loadListOfCategoriesNoTree()
     {
-        $this->getJson('/category/full-list-not-tree')
+        $this->getJson('/category/list')
             ->assertStatus(200)
             ->assertJsonStructure([
                 'data' => [
                     '*' => [
-                        'id', 'name', 'parent_id', 'lft', 'rgt',
-                        'depth'
+                        'id', 'name', 'children'
                     ]
                 ]
             ]);
@@ -42,38 +40,23 @@ class CategotyTest extends TestCase
     public function createCategoryWithNoParent()
     {
         $request = [
-            'name' => str_random(5)
+            'name' => str_random(10)
         ];
 
-        $this->post('/category/create', [$request])
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    '*' => [
-                        'id', 'name', 'parent_id', 'children', 'lft', 'rgt',
-                        'depth', 'success' => true
-                    ]
-                ]
-            ]);
+        $this->post('/category/create', $request)
+            ->assertStatus(201);
     }
 
     /** @test */
     public function createCategoryWithParent()
     {
         $request = [
-            'name' => str_random(5),
+            'name' => str_random(10),
             'parent_id' => rand(1, 12)
         ];
 
-        $this->post('/category/create', [$request])
-            ->assertStatus(200)
-            ->assertJsonStructure([
-                'data' => [
-                    '*' => [
-                        'id', 'name', 'parent_id', 'children', 'lft', 'rgt',
-                        'depth', 'success' => true
-                    ]
-                ]
-            ]);
+        $this->post('/category/create', $request)
+            ->assertStatus(201);
+
     }
 }

@@ -20,7 +20,6 @@
                     <div class="content">
                         {{item.description}}
                         <br>
-                        <time datetime="2016-1-1">{{item.created_at}}</time>
                     </div>
                 </div>
             </div>
@@ -29,21 +28,25 @@
 </template>
 
 <script>
-    import { bus } from "../bus";
     export default {
         data: function () {
             return {
-                endpoint: '/category/items-list',
+                items_list_endpoint: '/category/items-list',
                 current_category: null,
                 items: null,
                 load_items: false
             }
         },
         mounted() {
-            bus.$on('choose-category', (category) => {
+            this.$bus.$on('choose-category', (category) => {
                 this.current_category = category;
                 this.getItems();
             });
+            this.$bus.$on('item-created', (event) => {
+                if (event.category_id === this.current_category.id) {
+                    this.getItems();
+                }
+            })
         },
         methods: {
             getItems() {
@@ -51,7 +54,7 @@
                     id: this.current_category.id
                 };
                 this.load_items = true;
-                this.$http.post(this.endpoint, body, {
+                this.$http.post(this.items_list_endpoint, body, {
                     emulateJSON: true,
                     emulateHTTP: true
                 }).then(function (response) {

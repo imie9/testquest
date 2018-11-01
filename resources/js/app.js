@@ -28,6 +28,7 @@ import MainComponent from './components/MainComponent';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Toast, {
@@ -47,9 +48,13 @@ var router = new VueRouter({
    ]
 });
 
+Vue.prototype.$bus = new Vue();
+
+
 Vue.component('main-component', require('./components/MainComponent.vue'));
 Vue.component('categories-component', require('./components/CategoriesComponent.vue'));
 Vue.component('create-category-component', require('./components/CreateCategoryComponent.vue'));
+Vue.component('create-item-component', require('./components/CreateItemComponent.vue'));
 Vue.component('items-component', require('./components/ItemsComponent.vue'));
 Vue.component('tree-menu-component', require('./components/TreeMenuComponent.vue'));
 

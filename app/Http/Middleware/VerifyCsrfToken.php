@@ -21,6 +21,8 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         '/category/items-list',
         '/category/create',
-        '/category/full-list-not-tree'
+        '/category/full-list-not-tree',
+        '/item/create',
+        '/item/image/{path}'
     ];
 }

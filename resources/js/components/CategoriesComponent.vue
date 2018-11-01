@@ -7,24 +7,23 @@
 </template>
 
 <script>
-    import { bus } from '../bus';
     export default {
         data: function () {
           return {
-              endpoint: '/category/full-list',
+              list_endpoint: '/category/tree',
               categories: [],
               categories_loading: true
             }
         },
         mounted() {
-            this.update()
-            bus.$on('category-created', event => {
+            this.update();
+            this.$bus.$on('category-created', event => {
                 this.update();
             })
         },
         methods: {
             update: function () {
-                this.$http.get(this.endpoint).then(function (response) {
+                this.$http.get(this.list_endpoint).then(function (response) {
                     this.categories_loading = false;
                     this.categories = response.data.data;
                 })

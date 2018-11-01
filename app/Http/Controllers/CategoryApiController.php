@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 
 /**
@@ -12,116 +13,79 @@ use Illuminate\Http\Request;
 class CategoryApiController extends Controller
 {
     /**
+     * @var CategoryService
+     */
+    protected $categoryService;
+
+    public function __construct(Category $category)
+    {
+        $this->categoryService = new CategoryService($category);
+    }
+
+    /**
      * Full list of categories
      *
-     * @return array
+     * @return \App\Http\Resources\CategoriesResource
      */
-    public function categoryList()
+    public function categoryTree()
     {
-        $category = new Category();
-
-        $list = $category->getList();
-
-        if (empty($list)) {
-            return $this->formatResponse(true, [], 'There are no categories');
-        }
-
-        return $this->formatResponse(true, $list);
+        return $this->categoryService->getTree();
     }
 
     /**
      * Full list of categories (not tree)
      *
-     * @return array
+     * @return \App\Http\Resources\CategoriesResource
      */
-    public function categoryListNoTree() {
-        $category = new Category();
-
-        $list = $category->getNoTreeList();
-
-        if (empty($list)) {
-            return $this->formatResponse(true, [], 'There are no categories');
-        }
-
-        return $this->formatResponse(true, $list);
+    public function categoryList()
+    {
+        return $this->categoryService->getList();
     }
 
     /**
      * Items list for category
      *
      * @param Request $request
-     *
-     * {
-     *  "id": integer
-     * }
-     * @return array
+     * @return \App\Http\Resources\ItemsResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function itemsList(Request $request)
     {
-        if (empty($request->post()['id'])) {
-            return $this->formatResponse(false, [], 'Please provide the category id: {"id": integer} ');
-        }
+        $this->validate($request, [
+            'id' => [
+                'required',
+                'integer'
+            ]
+        ]);
 
-        $category_id = $request->post()['id'];
+        $result = $this->categoryService->items($request);
 
-        $items = Category::getOwnItems($category_id);
-
-        if (empty($items)) {
-            return $this->formatResponse(true, [], 'There are no items for this category');
-        }
-
-        return $this->formatResponse(true, $items);
+        return $result;
     }
 
+
     /**
+     * Crate new category
+     *
      * @param Request $request
-     *
-     * {
-     *   "name": string,
-     *   "parent_id": integer (optional)
-     * }
-     *
-     * @return array
+     * @return \App\Http\Resources\CategoryResource
+     * @throws \Illuminate\Validation\ValidationException
      */
-    public function create(Request $request) {
-        $category = new Category();
-        if (empty($request->post()['name'])) {
-            return $this->formatResponse(false, [], 'Please provide the category id: {"name": string} ');
-        }
-        $result = $category->createNew($request->post());
-
-        if (!empty($result['msg'])) {
-            return $this->formatResponse(false, [], $result['msg']);
-        }
-
-        return $this->formatResponse(true, $result, 'Created!');
-    }
-
-    /**
-     * Make base response
-     *
-     * {
-     *   "success" => boolean,
-     *   "data" => array,
-     *   "msg" => string (optional)
-     * }
-     *
-     * @param $success boolean
-     * @param $data mixed
-     * @param $message string | null
-     *
-     * @return array
-     */
-    private function formatResponse($success, $data, $message = null)
+    public function create(Request $request)
     {
-        $result = [
-            'success' => $success,
-            'data' => $data
-        ];
+        $this->validate($request, [
+            'name' => [
+                'required',
+                'string',
+                'min:5',
+                'max:100',
+            ],
+            'parent_id' => [
+                'integer'
+            ]
+        ]);
 
-        if (!empty($message)) {
-            $result['msg'] = $message;
-        }
+        $result = $this->categoryService->create($request);
 
         return $result;
     }

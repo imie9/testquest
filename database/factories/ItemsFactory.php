@@ -8,6 +8,6 @@ $factory->define(App\Models\Item::class, function (Faker $faker) {
         'name' => $faker->name,
         'category_id' => rand(1, $category_id),
         'description' => $faker->text,
-        'image_url' => $faker->imageUrl
+        'image_url' => 'image.png'
     ];
 });
