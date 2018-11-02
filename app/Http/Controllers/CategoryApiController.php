@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Services\CategoryService;
+use \Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 /**
@@ -43,20 +44,24 @@ class CategoryApiController extends Controller
     }
 
     /**
-     * Items list for category
-     *
      * @param Request $request
-     * @return \App\Http\Resources\ItemsResource
-     * @throws \Illuminate\Validation\ValidationException
+     * @return \App\Http\Resources\ItemsResource|array
      */
     public function itemsList(Request $request)
     {
-        $this->validate($request, [
-            'id' => [
-                'required',
-                'integer'
-            ]
-        ]);
+        try {
+            $this->validate($request, [
+                'id' => [
+                    'required',
+                    'integer'
+                ]
+            ]);
+        } catch(ValidationException $e) {
+            return [
+                'data' => [],
+                'error' => $e->getMessage()
+            ];
+        }
 
         $result = $this->categoryService->items($request);
 
@@ -65,25 +70,29 @@ class CategoryApiController extends Controller
 
 
     /**
-     * Crate new category
-     *
      * @param Request $request
-     * @return \App\Http\Resources\CategoryResource
-     * @throws \Illuminate\Validation\ValidationException
+     * @return \App\Http\Resources\CategoryResource|array
      */
     public function create(Request $request)
     {
-        $this->validate($request, [
-            'name' => [
-                'required',
-                'string',
-                'min:5',
-                'max:100',
-            ],
-            'parent_id' => [
-                'integer'
-            ]
-        ]);
+        try {
+            $this->validate($request, [
+                'name' => [
+                    'required',
+                    'string',
+                    'min:5',
+                    'max:100',
+                ],
+                'parent_id' => [
+                    'integer'
+                ]
+            ]);
+        } catch(ValidationException $e) {
+            return [
+                'data' => [],
+                'error' => $e->getMessage()
+            ];
+        }
 
         $result = $this->categoryService->create($request);
 

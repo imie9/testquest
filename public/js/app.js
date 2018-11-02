@@ -52991,7 +52991,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         update: function update() {
-            console.log(this);
             this.$http.get(this.list_endpoint).then(function (response) {
                 this.categories_loading = false;
                 this.categories = response.data.data;
