@@ -85,14 +85,14 @@
                     emulateJSON: true,
                     emulateHTTP: true
                 }).then(function (response) {
-                    if (response.data) {
+                    if (response.data && !response.data.error) {
                         this.$toast('Created');
                         const eventData = {
                             category_id: this.item.category_id
                         };
                         this.$bus.$emit('item-created', eventData);
                     } else {
-                        this.$toast('Failed, sorry...');
+                        this.$toast(response.data.error);
                     }
                 })
             },
