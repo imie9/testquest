@@ -59,8 +59,10 @@
                         this.request.parent_id = null;
                         this.update();
                     } else {
-                        this.$toast('Failed, sorry...');
+                        console.log(response.data);
                     }
+                }).catch(function (error) {
+                    this.$toast(error.body.message);
                 })
             }
         }

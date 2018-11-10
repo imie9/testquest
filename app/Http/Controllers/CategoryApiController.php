@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Services\CategoryService;
-use \Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 /**
@@ -45,23 +44,17 @@ class CategoryApiController extends Controller
 
     /**
      * @param Request $request
-     * @return \App\Http\Resources\ItemsResource|array
+     * @return \App\Http\Resources\ItemsResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function itemsList(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'id' => [
-                    'required',
-                    'integer'
-                ]
-            ]);
-        } catch(ValidationException $e) {
-            return [
-                'data' => [],
-                'error' => $e->getMessage()
-            ];
-        }
+        $this->validate($request, [
+            'id' => [
+                'required',
+                'integer'
+            ]
+        ]);
 
         $result = $this->categoryService->items($request);
 
@@ -71,28 +64,23 @@ class CategoryApiController extends Controller
 
     /**
      * @param Request $request
-     * @return \App\Http\Resources\CategoryResource|array
+     * @return \App\Http\Resources\CategoryResource
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function create(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'name' => [
-                    'required',
-                    'string',
-                    'min:5',
-                    'max:100',
-                ],
-                'parent_id' => [
-                    'integer'
-                ]
-            ]);
-        } catch(ValidationException $e) {
-            return [
-                'data' => [],
-                'error' => $e->getMessage()
-            ];
-        }
+        $this->validate($request, [
+            'name' => [
+                'required',
+                'string',
+                'min:5',
+                'max:100',
+            ],
+            'parent_id' => [
+                'integer',
+                'nullable'
+            ]
+        ]);
 
         $result = $this->categoryService->create($request);
 

@@ -92,8 +92,10 @@
                         };
                         this.$bus.$emit(this.$events.ITEM_CREATED, eventData);
                     } else {
-                        this.$toast(response.data.error);
+                        console.log(response.data);
                     }
+                }).catch(function (error) {
+                    this.$toast(error.body.message);
                 })
             },
             isFormInvalid() {

@@ -53125,7 +53125,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53198,8 +53198,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     this.request.parent_id = null;
                     this.update();
                 } else {
-                    this.$toast('Failed, sorry...');
+                    console.log(response.data);
                 }
+            }).catch(function (error) {
+                this.$toast(error.body.message);
             });
         }
     }
@@ -53405,7 +53407,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53511,8 +53513,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     };
                     this.$bus.$emit(this.$events.ITEM_CREATED, eventData);
                 } else {
-                    this.$toast(response.data.error);
+                    console.log(response.data);
                 }
+            }).catch(function (error) {
+                this.$toast(error.body.message);
             });
         },
         isFormInvalid: function isFormInvalid() {
@@ -54139,13 +54143,13 @@ if (false) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var events = {
+var eventsList = {
     CHOOSE_CATEGORY: 'choose-category',
     CATEGORY_CREATED: 'category-created',
     ITEM_CREATED: 'item-created'
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (events);
+/* harmony default export */ __webpack_exports__["a"] = (eventsList);
 
 /***/ })
 /******/ ]);
