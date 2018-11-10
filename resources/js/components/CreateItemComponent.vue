@@ -90,7 +90,7 @@
                         const eventData = {
                             category_id: this.item.category_id
                         };
-                        this.$bus.$emit('item-created', eventData);
+                        this.$bus.$emit(this.$events.ITEM_CREATED, eventData);
                     } else {
                         this.$toast(response.data.error);
                     }

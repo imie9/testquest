@@ -14364,8 +14364,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue2_toast___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue2_toast__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_toast_lib_toast_css__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue2_toast_lib_toast_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue2_toast_lib_toast_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MainComponent__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_MainComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_MainComponent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__events__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_MainComponent__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_MainComponent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_MainComponent__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -14379,6 +14380,7 @@ window.Vue = __webpack_require__(40);
 /**
  * packages
  */
+
 
 
 
@@ -14408,11 +14410,12 @@ var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({
   routes: [{
     path: '*',
     name: 'main',
-    component: __WEBPACK_IMPORTED_MODULE_4__components_MainComponent___default.a
+    component: __WEBPACK_IMPORTED_MODULE_5__components_MainComponent___default.a
   }]
 });
 
 Vue.prototype.$bus = new Vue();
+Vue.prototype.$events = __WEBPACK_IMPORTED_MODULE_4__events__["a" /* default */];
 
 Vue.component('main-component', __webpack_require__(14));
 Vue.component('categories-component', __webpack_require__(56));
@@ -52984,7 +52987,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         this.update();
-        this.$bus.$on('category-created', function (event) {
+        this.$bus.$on(this.$events.CATEGORY_CREATED, function (event) {
             _this.update();
         });
     },
@@ -53189,7 +53192,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 emulateHTTP: true
             }).then(function (response) {
                 if (response.data) {
-                    this.$bus.$emit('category-created', {});
+                    this.$bus.$emit(this.$events.CATEGORY_CREATED, {});
                     this.$toast('Created');
                     this.request.name = null;
                     this.request.parent_id = null;
@@ -53506,7 +53509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var eventData = {
                         category_id: this.item.category_id
                     };
-                    this.$bus.$emit('item-created', eventData);
+                    this.$bus.$emit(this.$events.ITEM_CREATED, eventData);
                 } else {
                     this.$toast(response.data.error);
                 }
@@ -53835,11 +53838,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        this.$bus.$on('choose-category', function (category) {
+        this.$bus.$on(this.$events.CHOOSE_CATEGORY, function (category) {
             _this.current_category = category;
             _this.getItems();
         });
-        this.$bus.$on('item-created', function (event) {
+        this.$bus.$on(this.$events.ITEM_CREATED, function (event) {
             if (event.category_id === _this.current_category.id) {
                 _this.getItems();
             }
@@ -54053,7 +54056,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         choose: function choose(data) {
-            this.$bus.$emit('choose-category', data);
+            this.$bus.$emit(this.$events.CHOOSE_CATEGORY, data);
         }
     }
 });
@@ -54129,6 +54132,20 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 82 */,
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var events = {
+    CHOOSE_CATEGORY: 'choose-category',
+    CATEGORY_CREATED: 'category-created',
+    ITEM_CREATED: 'item-created'
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (events);
 
 /***/ })
 /******/ ]);

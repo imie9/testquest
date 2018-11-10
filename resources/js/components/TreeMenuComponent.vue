@@ -24,7 +24,7 @@
         },
         methods: {
             choose(data) {
-                this.$bus.$emit('choose-category', data);
+                this.$bus.$emit(this.$events.CHOOSE_CATEGORY, data);
             }
         }
     }

@@ -53,7 +53,7 @@
                     emulateHTTP: true
                 }).then(function (response) {
                     if (response.data) {
-                        this.$bus.$emit('category-created', {});
+                        this.$bus.$emit(this.$events.CATEGORY_CREATED, {});
                         this.$toast('Created');
                         this.request.name = null;
                         this.request.parent_id = null;

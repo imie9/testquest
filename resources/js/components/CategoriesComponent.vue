@@ -17,7 +17,7 @@
         },
         mounted() {
             this.update();
-            this.$bus.$on('category-created', event => {
+            this.$bus.$on(this.$events.CATEGORY_CREATED, event => {
                 this.update();
             })
         },

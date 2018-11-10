@@ -38,11 +38,11 @@
             }
         },
         mounted() {
-            this.$bus.$on('choose-category', (category) => {
+            this.$bus.$on(this.$events.CHOOSE_CATEGORY, (category) => {
                 this.current_category = category;
                 this.getItems();
             });
-            this.$bus.$on('item-created', (event) => {
+            this.$bus.$on(this.$events.ITEM_CREATED, (event) => {
                 if (event.category_id === this.current_category.id) {
                     this.getItems();
                 }

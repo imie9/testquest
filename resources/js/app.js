@@ -15,7 +15,7 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import Toast from 'vue2-toast';
 import 'vue2-toast/lib/toast.css';
-
+import events from './events';
 
 /**
  * components
@@ -49,6 +49,7 @@ var router = new VueRouter({
 });
 
 Vue.prototype.$bus = new Vue();
+Vue.prototype.$events = events;
 
 Vue.component('main-component', require('./components/MainComponent.vue'));
 Vue.component('categories-component', require('./components/CategoriesComponent.vue'));
